@@ -8,7 +8,7 @@ export default function PostCard({ post,onDelete }) {
   const user = useAuthStore((state) => state.user);
 
   const canEditOrDelete =
-    user && (user.type === "ADMIN" || user.id === post.author?._id);
+    user && (user.role === "ADMIN" || user.id === post.author?._id);
     
   return (
     <Card
