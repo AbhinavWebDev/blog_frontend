@@ -1,8 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { Menu, message, notification } from "antd";
+import { Menu } from "antd";
 import useAuthStore from "@/store/authStore";
 
 export default function Navbar() {
@@ -51,10 +50,7 @@ export default function Navbar() {
                 <Link href="/blog/create">Create</Link>
               </Menu.Item>
               <Menu.Item key="profile">
-                <Link href="/dashboard/profile">Profile</Link>
-              </Menu.Item>
-              <Menu.Item key="profile">
-                <Link href="/dashboard/profile">My Blogs</Link>
+                <Link href="/profile">Profile</Link>
               </Menu.Item>
               <Menu.Item key="logout" onClick={handleLogout}>
                 Logout

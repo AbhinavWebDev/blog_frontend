@@ -7,6 +7,8 @@ import postApi from "@/utils/postApi";
 
 export default function HomePage() {
   const [posts, setPosts] = useState([]);
+  const [trigger, setTrigger] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -18,12 +20,28 @@ export default function HomePage() {
       }
     };
     fetchPosts();
-  }, []);
+  }, [trigger]);
+
+  const onDelete = async (postId) => {
+    setLoading(true);
+    try {
+     
+       
+        await postApi.deletePost(postId);
+        setTrigger(Date.now)
+        // notification.success({ message: "Post updated successfully" });
+      
+    } catch (err) {
+      console.error(err)
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <div className="grid gap-4">
       {posts.map((post) => (
-        <PostCard key={post._id} post={post} />
+        <PostCard key={post._id} post={post} onDelete={onDelete} />
       ))}
     </div>
   );

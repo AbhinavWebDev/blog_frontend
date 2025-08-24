@@ -7,7 +7,7 @@ const postApi = {
 
     createPost: (data) => privateApi.post('/post', data),
 
-    updatePost: (data) => privateApi.put(`/post/${postId}`, data),
+    updatePost: (postId,data) => privateApi.put(`/post/${postId}`, data),
 
     deletePost: (postId) => privateApi.delete(`/post/${postId}`),
 

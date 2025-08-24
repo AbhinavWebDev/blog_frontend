@@ -1,4 +1,6 @@
 const { default: authApi } = require("@/utils/authApi");
+const {profileApi } = require("@/utils/profileApi");
+
 const { create } = require("zustand");
 const { persist, createJSONStorage } = require("zustand/middleware");
 
@@ -46,6 +48,19 @@ const useAuthStore = create(
                 }
             },
 
+            updateProfile: async (values) => {
+                console.log('yeeesdaf');
+                set({ loading: true, error: null });
+                try {
+                    const { data } = await profileApi.updateProfile(values);
+                    set({ user: data.user, loading: false });
+                } catch (err) {
+                    const message = err.response?.data?.message || err.message || "Update failed";
+                    set({ error: message, loading: false });
+                    throw new Error(message);
+                }
+            },
+
         }),
         {
             name: "auth-store",
@@ -55,4 +70,4 @@ const useAuthStore = create(
     )
 );
 
-module.exports = useAuthStore;
+export default  useAuthStore;
