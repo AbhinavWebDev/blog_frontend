@@ -48,10 +48,13 @@ export default function Navbar() {
           {user && (
             <>
               <Menu.Item key="dashboard">
-                <Link href="/dashboard/posts">Dashboard</Link>
+                <Link href="/blog/create">Create</Link>
               </Menu.Item>
               <Menu.Item key="profile">
                 <Link href="/dashboard/profile">Profile</Link>
+              </Menu.Item>
+              <Menu.Item key="profile">
+                <Link href="/dashboard/profile">My Blogs</Link>
               </Menu.Item>
               <Menu.Item key="logout" onClick={handleLogout}>
                 Logout

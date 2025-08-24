@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import api from "@/utils/api";
 import PostCard from "@/components/PostCard";
+import postApi from "@/utils/postApi";
 
 export default function HomePage() {
   const [posts, setPosts] = useState([]);
@@ -10,7 +11,7 @@ export default function HomePage() {
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const res = await api.get("/post");
+        const res = await postApi.getposts();
         setPosts(res.data.data);
       } catch (err) {
         console.error("Error fetching posts", err);

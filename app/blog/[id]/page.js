@@ -2,8 +2,8 @@
 
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
-import api from "@/utils/api";
 import { Card } from "antd";
+import postApi from "@/utils/postApi";
 
 export default function BlogDetailPage() {
   const params = useParams();
@@ -13,7 +13,7 @@ export default function BlogDetailPage() {
   useEffect(() => {
     const fetchPost = async () => {
       try {
-        const res = await api.get(`/post/${params.id}`);
+        const res = await postApi.getSinglePost(params.id);
         setPost(res.data.data);
       } catch (err) {
         console.error("Error fetching post", err);
